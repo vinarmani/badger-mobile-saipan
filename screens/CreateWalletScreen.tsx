@@ -35,7 +35,7 @@ type Props = PropsFromRedux & PropsFromParent;
 const CreateWalletScreen = ({ navigation, isCreated, getAccount }: Props) => {
   useEffect(() => {
     if (isCreated) {
-      navigation.navigate("Home");
+      navigation.navigate("Main");
     } else {
       getAccount();
     }
@@ -43,7 +43,7 @@ const CreateWalletScreen = ({ navigation, isCreated, getAccount }: Props) => {
 
   return (
     <ScreenWrapper>
-      <ActivityIndicator />
+      <ActivityIndicator size="large" color="green" />
       <Spacer />
       <T monospace>Loading Wallet...</T>
     </ScreenWrapper>

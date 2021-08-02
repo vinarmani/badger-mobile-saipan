@@ -311,7 +311,7 @@ const KeySweepScreen = ({
             <Spacer tiny />
             <Button text="Open QR Scanner" onPress={() => setCameraOpen(true)}>
               <T center spacing="loose" type="inverse" weight="bold">
-                <Ionicons name="ios-qr-scanner" size={18} /> Open Camera
+                <Ionicons name="ios-qr-code-outline" size={18} /> Open Camera
               </T>
             </Button>
             <Spacer />
@@ -375,7 +375,7 @@ const KeySweepScreen = ({
                               </T>
                             </>
                           ) : (
-                            <ActivityIndicator />
+                            <ActivityIndicator size="large" color="green" />
                           )}
                         </TokenCard>
                       </TouchableOpacity>
@@ -442,7 +442,7 @@ const KeySweepScreen = ({
                   justifyContent: "center"
                 }}
               >
-                <ActivityIndicator size="large" />
+                <ActivityIndicator size="large" color="green" />
               </View>
             )}
             {sweepState === "success" && (

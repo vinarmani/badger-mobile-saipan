@@ -41,7 +41,14 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromParent & PropsFromRedux;
 
-const AuthLoadingScreen = ({ navigation, mnemonic, getAccount }: Props) => {
+const AuthLoadingScreen = ({
+  navigation,
+  route,
+  mnemonic,
+  getAccount
+}: Props) => {
+  const navParams = route.params;
+
   const handleDeepLink = useCallback(
     async params => {
       const { uri, r } = params;
@@ -116,25 +123,23 @@ const AuthLoadingScreen = ({ navigation, mnemonic, getAccount }: Props) => {
   );
   // re-generate accounts keypair then go to Main.
   useEffect(() => {
-    const navParams = navigation.state.params;
-
     if (mnemonic) {
       getAccount(mnemonic);
 
-      if (navParams) {
+      if (navParams?.uri && navParams?.r) {
         handleDeepLink(navParams);
         return;
       }
-      navigation.navigate("Main");
+      setTimeout(() => navigation.navigate("Main"), 500);
     } else {
-      navigation.navigate("AuthStack");
+      setTimeout(() => navigation.navigate("AuthStack"), 500);
     }
   }, [mnemonic, handleDeepLink, navigation, getAccount]);
 
   return (
     <Wrapper>
       <InnerWrapper>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" color="green" />
         <Spacer />
         <T monospace>Herding Badgers</T>
       </InnerWrapper>
